@@ -1,5 +1,6 @@
 "use client";
 
+import StyledComponentsRegistry from "@/lib/registry";
 import { SessionProvider } from "next-auth/react";
 import Header from "@/components/Header";
 import AuthWrapper from "@/components/AuthWrapper";
@@ -13,12 +14,14 @@ export default function RootLayout({
     <html lang="en">
       <head />
       <body>
-        <SessionProvider refetchOnWindowFocus={false}>
-          <Header />
-          <AuthWrapper>
-            <>{children}</>
-          </AuthWrapper>
-        </SessionProvider>
+        <StyledComponentsRegistry>
+          <SessionProvider refetchOnWindowFocus={false}>
+            <Header />
+            <AuthWrapper>
+              <>{children}</>
+            </AuthWrapper>
+          </SessionProvider>
+        </StyledComponentsRegistry>
       </body>
     </html>
   );
