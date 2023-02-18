@@ -4,6 +4,7 @@ import StyledComponentsRegistry from "@/lib/registry";
 import { SessionProvider } from "next-auth/react";
 import Header from "@/components/Header";
 import AuthWrapper from "@/components/AuthWrapper";
+import { Providers } from "./provider";
 
 export default function RootLayout({
   children,
@@ -14,14 +15,10 @@ export default function RootLayout({
     <html lang="en">
       <head />
       <body>
-        <StyledComponentsRegistry>
-          <SessionProvider refetchOnWindowFocus={false}>
-            <Header />
-            <AuthWrapper>
-              <>{children}</>
-            </AuthWrapper>
-          </SessionProvider>
-        </StyledComponentsRegistry>
+        <Providers>
+          <Header />
+          {children}
+        </Providers>
       </body>
     </html>
   );
