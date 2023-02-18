@@ -1,18 +1,25 @@
-import './globals.css'
+"use client";
+
+import { SessionProvider } from "next-auth/react";
+import Header from "@/components/Header";
+import AuthWrapper from "@/components/AuthWrapper";
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en">
-      {/*
-        <head /> will contain the components returned by the nearest parent
-        head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
-      */}
       <head />
-      <body>{children}</body>
+      <body>
+        <SessionProvider refetchOnWindowFocus={false}>
+          <Header />
+          <AuthWrapper>
+            <>{children}</>
+          </AuthWrapper>
+        </SessionProvider>
+      </body>
     </html>
-  )
+  );
 }
